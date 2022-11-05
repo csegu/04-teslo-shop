@@ -13,10 +13,10 @@ export class Product {
     })
     title: string;
 
-    @Column('numeric', {
+    @Column('float', {
         default: 0
     })
-    precio: number;
+    price: number;
 
     @Column({
         type: 'text',
