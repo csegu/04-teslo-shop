@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -7,6 +7,8 @@ import { Product } from './entities/product.entity';
 
 @Injectable()
 export class ProductsService {
+
+  private readonly logger = new Logger('')
 
   constructor(
     @InjectRepository(Product)
@@ -19,7 +21,7 @@ export class ProductsService {
       await this.productRepository.save(product);
 
       return product;
-      
+
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('HELP! I NEED SOMEBODY! HELP!')
